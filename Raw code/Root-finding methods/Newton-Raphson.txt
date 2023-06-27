@@ -1,0 +1,58 @@
+Define newton()=
+Prgm
+:Local fx, x0, nmax, ep, dfx, k, fun_eva, der_eva, xn, diferencia
+:Try
+:  Request "Insert the function equaled to zero: ",fx
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the initial value: ",x0
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Max number of iterations before forced exit: ",nmax
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:Request "Epsilon: ",ep
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:dfx:=(fx,x)
+:Disp "k     xn     difference"
+:k:=1
+:While k<nmax
+:  fun_eva:=fx|x=x0
+:  der_eva:=dfx|x=x0
+:  xn:=x0-((fun_eva)/(der_eva))
+:  diferencia:=abs(xn-x0)
+:  Disp k,"     ",xn,"     ",diferencia
+:  Disp "____________________________________"
+:  If diferencia≤ep Then
+:    Disp "The method converges in ",k," iterations"
+:    Disp "The root it found was ",xn
+:    Return 
+:  Else
+:    k:=k+1
+:  EndIf
+:  x0:=xn
+:EndWhile
+:If k≥nmax Then
+:  Disp "The method diverges in ",k+1," iterations"
+:EndIf
+:EndPrgm

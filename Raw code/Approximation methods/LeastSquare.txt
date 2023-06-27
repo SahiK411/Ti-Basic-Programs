@@ -1,0 +1,55 @@
+Define min_cuad()=
+Prgm
+:Local matx,maty,matvar,n,n1,g,k,e,i,j,ab
+:Try
+:  Request "How many (x,y) pairs do you have?",n1,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "What degree polynomial should it create?",g,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:n:=n1-1
+:matx:=newMat(n+1,1)
+:maty:=newMat(n+1,1)
+:matvar:=newMat(g+1,g+2)
+:k:=1
+:While k≤n+1
+:  Try
+:    Request "Input the value numbered "&string(k)&" of x",matx[k,1],0,ab
+:  Else
+:    Goto end
+:  EndTry
+:  If ab=0 Then
+:    Goto end
+:  EndIf
+:  Try
+:    Request "Input the value numbered "&string(k)&" of y",maty[k,1],0,ab
+:  Else
+:    Goto end
+:  EndTry
+:  If ab=0 Then
+:    Goto end
+:  EndIf
+:  k:=k+1
+:EndWhile
+:k:=0
+:For i,1,g+1,1
+:  For j,1,g+1,1
+:    matvar[i,j]:=∑(matx[e,1]^(k+j-1),e,1,n+1)
+:  EndFor
+:  matvar[i,g+2]:=∑(maty[e,1]*matx[e,1]^(k),e,1,n+1)
+:  k:=k+1
+:EndFor
+:Disp matvar
+:Disp rref(matvar)
+:Lbl end
+:EndPrgm

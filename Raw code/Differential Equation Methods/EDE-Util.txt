@@ -1,0 +1,34 @@
+Define ede_util()=
+Prgm
+:Local m,n,dm,dn,ab
+:Try
+:  Request "What is the M(x,y) function?",m,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "What is the N(x,y) function?",n,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:dm:=(m,y)
+:dn:=(n,x)
+:Disp "d/dy M(x,y): ",dm
+:Disp "d/dx N(x,y): ",dn
+:If dm=dn Then
+:  Disp "f(x,y): ",∫(m,x)," + g(y)"
+:  Disp "f(x,y): ",∫(n,y)," + h(x)"
+:  Goto end
+:EndIf
+:miux:=^(∫(((dm-dn)/(n)),x))
+:miuy:=^(∫(((dn-dm)/(m)),y))
+:Disp "Integrating Factor in x: ",miux
+:Disp "Integrating Factor in y: ",miuy
+:Lbl end
+:EndPrgm

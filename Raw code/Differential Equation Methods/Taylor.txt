@@ -1,0 +1,110 @@
+Define de_taylor()=
+Prgm
+:Local dy,m,k,h,n,str1,str2,str3,aux,temp,ab
+:Try
+:  Request "What is the y' function?",dy,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "What is the h step?",h,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "How many iterations do you need?",n,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "What degree of Taylor?",k,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:m:=newMat(n+2,k+2)
+:Try
+:  Request "What is the value of x0?",m[2,1],0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "What is the value of y0?",m[2,2],0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:temp:=string(dy)
+:str2:=temp
+:str3:=0
+:While str3=0
+:  str:=inString(temp,"y")
+:  If str=0 Then
+:    str3:=1
+:  Else
+:    If str=1 Then
+:      str2:="z(x)"&right(temp,dim(temp)-1)
+:    Else
+:      str2:=left(temp,str-1)&"z(x)"&right(temp,dim(temp)-str)
+:    EndIf
+:  EndIf
+:  temp:=str2
+:EndWhile
+:dy:=expr(str2)
+:For ab,1,k,1
+:  m[1,ab+2]:=(dy,x,ab-1)
+:  temp:=ab-1
+:  While temp>0
+:    str1:=string((z(x),x,temp))
+:    str2:="("&string(m[1,temp+2])&")"
+:    str3:=string(m[1,ab+2])
+:    aux:=inString(str3,str1)
+:    While aux≠0
+:      aux:=inString(str3,str1)
+:      If aux≠0 Then
+:        If aux=1 Then
+:          str3:=str2&right(str3,dim(str3)-dim(str1))
+:        Else
+:          str3:=left(str3,aux-1)&str2&right(str3,dim(str3)-dim(str1)-aux+1)
+:        EndIf
+:      EndIf
+:    EndWhile
+:    m[1,ab+2]:=expr(str3)
+:    temp:=temp-1
+:  EndWhile
+:EndFor
+:For ab,1,k,1
+:  m[1,ab+2]:=m[1,ab+2]|z(x)=y
+:EndFor
+:For ab,1,k,1
+:    m[2,ab+2]:=m[1,ab+2]|x=m[2,1] and y=m[2,2]
+:  EndFor
+:For aux,3,n+2,1
+:  m[aux,1]:=m[aux-1,1]+h
+:  For ab,0,k,1
+:    m[aux,2]:=m[aux,2]+((h^(ab))/(ab!))*m[aux-1,ab+2]
+:  EndFor
+:  For ab,1,k,1
+:    m[aux,ab+2]:=m[1,ab+2]|x=m[aux,1] and y=m[aux,2]
+:  EndFor
+:EndFor
+:Disp "X - Y - Y' - Y'' - ..."
+:Disp m
+:Lbl end
+:EndPrgm

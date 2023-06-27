@@ -1,0 +1,54 @@
+Define rk1()=
+Prgm
+:Local dy,x0,y0,n,h,mat,ab
+:Try
+:  Request "What is the y' function?",dy,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "What is the initial x value?",x0,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "What is the initial y value?",y0,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "What is the h step?",h,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "How many iterations do you need?",n,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:mat:=newMat(n+1,2)
+:mat[1,1]:=x0
+:mat[1,2]:=y0
+:For ab,2,n+1,1
+:  mat[ab,1]:=mat[ab-1,1]+h
+:  mat[ab,2]:=mat[ab-1,2]+(h*dy|x=mat[ab-1,1] and y=mat[ab-1,2])
+:EndFor
+:Disp "X - Y"
+:Disp mat
+:Lbl end
+:EndPrgm

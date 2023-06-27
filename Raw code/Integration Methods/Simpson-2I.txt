@@ -1,0 +1,66 @@
+Define simpson()=
+Prgm
+:Local fx,gx,n,m,h,k,a,b,c,d,ab
+:Try
+:    Request "Input the function to approximate",fx,0,ab
+:  Else
+:    Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:    Request "Input the 'n' number of nodes",n,0,ab
+:  Else
+:    Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:    Request "Input the 'm' number of nodes",m,0,ab
+:  Else
+:    Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the 'a' lower bound",a,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the 'b' upper bound",b,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the 'c' lower bound",c,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the 'd' upper bound",d,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:h:=((b-a)/(2*n))
+:k:=((d-c)/(2*m))
+:gx:=((k)/(3))*((fx|y=c)+4*∑(fx|y=c+(2*i-1)*k,i,1,m)+2*∑(fx|y=c+2*i*k,i,1,m-1)+(fx|y=d))
+:Disp "g(x) = ",gx
+:Disp "I","=",((h)/(3))*((gx|x=a)+4*∑(gx|x=a+(2*i-1)*h,i,1,n)+2*∑(gx|x=a+2*i*h,i,1,n-1)+(gx|x=b))
+:Lbl end
+:EndPrgm

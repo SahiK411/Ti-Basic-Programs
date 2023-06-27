@@ -1,0 +1,56 @@
+Define ipf()=
+Prgm
+:Local gx,x0,nmax,ep,k,diferencia,ab
+:Try
+:  Request "g(x) function: ",gx,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Initial value: ",x0,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:Request "Epsilon: ",ep,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Max number of iterations before forced exit: ",nmax,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Disp "k        xn          difference"
+:k:=1
+:While k<nmax
+:  xn:=gx|x=x0
+:  diferencia:=abs(xn-x0)
+:  Disp k,"     ",format(xn,"F9"),"     ",format(diferencia,"F9")
+:  Disp "____________________________________"
+:  If diferencia≤ep Then
+:    Disp "The method converges in ",k," iterations"
+:    Disp "The root it found was ",format(xn,"F9")
+:    Return 
+:  Else
+:    k:=k+1
+:  EndIf
+:  x0:=xn
+:EndWhile
+:If k≥nmax Then
+:  Disp "The method diverges after ",k+1," iterations"
+:EndIf
+:Lbl end
+:EndPrgm

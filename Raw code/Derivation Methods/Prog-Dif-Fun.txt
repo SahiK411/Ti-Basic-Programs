@@ -1,0 +1,58 @@
+Define dif_prog_fun()=
+Prgm
+:Local mat,fx,x0,h,gx,n,n1,curr_row,curr_col,k,ab
+:Try
+:  Request "Which difference do you want to find?",n1,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:    Request "What function are you approximating?",fx,0,ab
+:  Else
+:    Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:    Request "In which x value?",x0,0,ab
+:  Else
+:    Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:    Request "With which h step?",h,0,ab
+:  Else
+:    Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:gx:=((x2-x1)/(p))
+:n:=n1-1
+:mat:=newMat(n+2,n+2)
+:k:=1
+:While k≤n+2
+:  mat[k,1]:=fx|x=x0+(k-1)*h
+:  k:=k+1
+:EndWhile
+:k:=n+2
+:curr_col:=2
+:While k>0
+:  For curr_row,1,n+1,1
+:    If curr_row<k Then
+:      mat[curr_row,curr_col]:=gx|x2=mat[curr_row+1,curr_col-1] and x1=mat[curr_row,curr_col-1] and p=h
+:    EndIf
+:  EndFor
+:  k:=k-1
+:  curr_col:=curr_col+1
+:EndWhile
+:Disp "fx - dif1 - dif2 - dif3 - ..."
+:Disp mat
+:Lbl end
+:EndPrgm

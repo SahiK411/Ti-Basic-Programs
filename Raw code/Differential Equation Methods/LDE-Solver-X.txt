@@ -1,0 +1,85 @@
+Define edl_util_x()=
+Prgm
+:Local a0,a1,gx,px,qx,miu,num,temp,str,str2,str3,ab
+:Try
+:  Request "What is the a0(x) function?",a0,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "What is the a1(x) function?",a1,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "What is the g(x) function?",gx,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:px:=((a0)/(a1))
+:qx:=((gx)/(a1))
+:temp:=∫(px,x)
+:miu:=expand(^(temp))
+:temp:=string(miu)
+:Disp temp
+:str:=inString(temp,"abs")
+:If str=0 Then
+:  str2:=temp
+:  str3:=1
+:Else
+:  str3:=0
+:EndIf
+:While str3=0
+:  str:=inString(temp,"abs")
+:  If str=0 Then
+:    str3:=1
+:  Else
+:    If str=1 Then
+:      str2:=right(temp,dim(temp)-3)
+:    Else
+:      str2:=left(temp,str-1)&right(temp,dim(temp)-str-4)
+:    EndIf
+:  EndIf
+:  temp:=str2
+:  Disp str2
+:EndWhile
+:miu:=expr(str2)
+:Disp miu
+:temp:=miu*qx
+:num:=∫(temp,x)
+:temp:=string(num)
+:Disp temp
+:str:=inString(temp,"abs")
+:If str=0 Then
+:  str2:=temp
+:  str3:=1
+:Else
+:  str3:=0
+:EndIf
+:While str3=0
+:  str:=inString(temp,"abs")
+:  If str=0 Then
+:    str3:=1
+:  Else
+:    If str=1 Then
+:      str2:=right(temp,dim(temp)-3)
+:    Else
+:      str2:=left(temp,str-1)&right(temp,dim(temp)-str-4)
+:    EndIf
+:  EndIf
+:  temp:=str2
+:  Disp str2
+:EndWhile
+:num:=expr(str2)
+:Disp "y = ",expand(((num)/(miu))+((c)/(miu)))
+:Lbl end
+:EndPrgm
