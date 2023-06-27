@@ -1,0 +1,39 @@
+Define simpson()=
+Prgm
+:Local fx,n,h,a,b,ab
+:Try
+:    Request "Input the function to approximate",fx,0,ab
+:  Else
+:    Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:    Request "With how many nodes?",n,0,ab
+:  Else
+:    Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the lower bound",a,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the upper bound",b,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:h:=((b-a)/(2*n))
+:Disp "S",2*n,"=",((h)/(3))*((fx|x=a)+4*∑(fx|x=a+(2*i-1)*h,i,1,n)+2*∑(fx|x=a+2*i*h,i,1,n-1)+(fx|x=b))
+:Lbl end
+:EndPrgm

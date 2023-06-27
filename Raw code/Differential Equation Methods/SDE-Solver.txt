@@ -1,0 +1,29 @@
+Define edvs_util()=
+Prgm
+:Local m,n,mx,nymxy,nxy,sol,ab
+:Try
+:  Request "What is the M(x,y) function?",m,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "What is the N(x,y) function?",n,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:mxy:=polyCoeffs(m,y)
+:nxy:=polyCoeffs(n,x)
+:mx:=mxy[1]
+:ny:=nxy[1]
+:Disp "Factored M(x,y): ",mx
+:Disp "Factored N(x,y): ",ny
+:sol:=∫(mx,x)+∫(ny,y)
+:Disp "Solution: ",sol," = C"
+:Lbl end
+:EndPrgm

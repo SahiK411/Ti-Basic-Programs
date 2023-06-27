@@ -1,0 +1,80 @@
+Define bisection()=
+Prgm
+:Local fx,a,b,epsilon,nmax,fa,fb,pn,fp,pn1,err,ab
+:Try
+:  Request "f(x) function:",fx,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Lower bound:",a,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Upper bound:",b,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Epsilon:",epsilon,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Max number of iterations before forced exit:",nmax,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:fa:=fx|x=a
+:fb:=fx|x=b
+:pn:=((b+a)/(2))
+:pn1:=1
+:If fa*fb<0 Then
+:  k:=1
+:  Disp "k     a     b     fa     fb     p     fp     err"
+:  While k<nmax
+:    fp:=fx|x=pn
+:    err:=((abs(pn-pn1))/(pn))
+:    Disp k,"   ",format(a,"F4"),"   ",format(b,"F4"),"   ",format(fa,"F4"),"   ",format(fb,"F4"),"   ",format(pn,"F4"),"   ",format(fp,"F4"),"   ",format(err,"F4")
+:    Disp "____________________________________"
+:    If err<epsilon Then
+:      Disp "The method converges in ",k," iterations"
+:      Disp "The root it found was: ",format(pn,"F4")
+:      Return 
+:    Else
+:      k:=k+1
+:    EndIf
+:    If fa*fp<0 Then
+:      fb:=fp
+:      b:=pn
+:    Else
+:      fa:=fp
+:      a:=pn
+:    EndIf
+:    pn1:=pn
+:    pn:=((b+a)/(2))
+:  EndWhile
+:  If k≥nmax Then
+:  Disp "The method diverges in  ",k+1," iterations"
+:  EndIf
+:Else
+:  Disp "There is no root in [",a,",",b,"]"
+:EndIf
+:Lbl end
+:EndPrgm

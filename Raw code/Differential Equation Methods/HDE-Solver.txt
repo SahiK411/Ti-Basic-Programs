@@ -1,0 +1,38 @@
+Define edh_util()=
+Prgm
+:Local m,n,mt,nt,degmt,degnt,yu,dyu,sde,ab
+:Try
+:  Request "What is the M(x,y) function?",m,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "What is the N(x,y) function?",n,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:mt:=expand(m|x=x0*t and y=y0*t)
+:nt:=expand(n|x=x0*t and y=y0*t)
+:Disp "M(xt,yt): ",mt
+:Disp "N(xt,yt): ",nt
+:degmt:=polyDegree(mt,t)
+:degnt:=polyDegree(nt,t)
+:If degmt=degnt Then
+:  yu:=u*x
+:  dyu:=u*dx+x*du
+:  sde:=(m|y=yu)*dx+(n|y=yu)*dyu
+:  Disp "f(x,u):",expand(sde)
+:  Disp "u = ",yu
+:  Disp "du = ",dyu
+: Goto end
+:EndIf
+:Disp "Degree of M(xt,yt): ",degmt
+:Disp "Degree of N(xt,yt): ",degnt
+:Lbl end
+:EndPrgm

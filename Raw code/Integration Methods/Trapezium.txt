@@ -1,0 +1,39 @@
+Define trapezium()=
+Prgm
+:Local fx,gx,n,h,a,b,ab
+:Try
+:    Request "Input the function to approximate",fx,0,ab
+:  Else
+:    Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:    Request "With how many nodes?",n,0,ab
+:  Else
+:    Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the lower bound",a,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the upper bound",b,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:h:=((b-a)/(n))
+:Disp "T",n,"=",h*(((fx|x=a)/(2))+∑(fx|x=a+i*h,i,1,n-1)+((fx|x=b)/(2)))
+:Lbl end
+:EndPrgm

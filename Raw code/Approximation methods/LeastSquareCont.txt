@@ -1,0 +1,49 @@
+Define mincuad_cont()=
+Prgm
+:Local a,b,fx,matvar,g,k,e,i,j,ab
+:Try
+:  Request "Input the function to approximate",fx,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "What degree polynomial should it create?",g,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the lower bound",a,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the upper bound",b,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:n:=n1-1
+:matvar:=newMat(g+1,g+2)
+:k:=0
+:For i,1,g+1,1
+:  For j,1,g+1,1
+:    matvar[i,j]:=∫(x^(k+j-1),x,a,b)
+:  EndFor
+:  matvar[i,g+2]:=∫(fx*x^(k),x,a,b)
+:  k:=k+1
+:EndFor
+:Disp matvar
+:Disp rref(matvar)
+:Lbl end
+:EndPrgm

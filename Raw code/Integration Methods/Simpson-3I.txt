@@ -1,0 +1,93 @@
+Define simpson()=
+Prgm
+:Local fx,gx,hx,n,m,o,h,k,q,a,b,c,d,e,f,ab
+:Try
+:    Request "Input the function to approximate",fx,0,ab
+:  Else
+:    Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:    Request "Input the 'n' number of nodes",n,0,ab
+:  Else
+:    Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:    Request "Input the 'm' number of nodes",m,0,ab
+:  Else
+:    Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:    Request "Input the 'o' number of nodes",o,0,ab
+:  Else
+:    Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the 'a' lower bound",a,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the 'b' upper bound",b,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the 'c' lower bound",c,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the 'd' upper bound",d,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the 'e' lower bound",e,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the 'f' upper bound",f,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:h:=((b-a)/(2*n))
+:k:=((d-c)/(2*m))
+:q:=((f-e)/(2*o))
+:hx:=((q)/(3))*((fx|z=e)+4*∑(fx|z=e+(2*i-1)*q,i,1,o)+2*∑(fx|z=e+2*i*q,i,1,o-1)+(fx|z=f))
+:Disp "h(x) = ",hx
+:gx:=((k)/(3))*((hx|y=c)+4*∑(hx|y=c+(2*i-1)*k,i,1,m)+2*∑(hx|y=c+2*i*k,i,1,m-1)+(hx|y=d))
+:Disp "g(x) = ",gx
+:Disp "I","=",((h)/(3))*((gx|x=a)+4*∑(gx|x=a+(2*i-1)*h,i,1,n)+2*∑(gx|x=a+2*i*h,i,1,n-1)+(gx|x=b))
+:Lbl end
+:EndPrgm

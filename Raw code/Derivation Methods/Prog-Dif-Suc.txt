@@ -1,0 +1,49 @@
+Define dif_prog()=
+Prgm
+:Local mat,gx,n,ni,n1,curr_row,curr_col,k,ab
+:Try
+:  Request "Which difference do you want to find?",n1,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "For what sub-index of x?",ni,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:gx:=x2-x1
+:n:=n1+ni-1
+:mat:=newMat(n+1,n+1)
+:k:=1
+:While k≤n+1
+:  Try
+:    Request "Input the value numbered "&string(k)&" of y",mat[k,1],0,ab
+:  Else
+:    Goto end
+:  EndTry
+:  If ab=0 Then
+:    Goto end
+:  EndIf
+:  k:=k+1
+:EndWhile
+:k:=n+1
+:curr_col:=2
+:While k>0
+:  For curr_row,1,n+1,1
+:    If curr_row<k Then
+:      mat[curr_row,curr_col]:=gx|x2=mat[curr_row+1,curr_col-1] and x1=mat[curr_row,curr_col-1]
+:    EndIf
+:  EndFor
+:  k:=k-1
+:  curr_col:=curr_col+1
+:EndWhile
+:Disp "y - dif1 - dif2 - dif3 - ..."
+:Disp mat
+:Lbl end
+:EndPrgm

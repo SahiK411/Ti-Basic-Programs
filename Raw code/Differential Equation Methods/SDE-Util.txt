@@ -1,0 +1,25 @@
+Define edvs_util()=
+Prgm
+:Local m,n,mxy,nxy,ab
+:Try
+:  Request "What is the M(x,y) function?",m,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "What is the N(x,y) function?",n,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:mxy:=factor(m)
+:nxy:=factor(n)
+:Disp "Factored M(x,y): ",mxy
+:Disp "Factored N(x,y): ",nxy
+:Lbl end
+:EndPrgm

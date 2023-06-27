@@ -1,0 +1,60 @@
+Define stephensen()=
+Prgm
+:Local gx,p0,p1,p2,pg1,pg,err,ep,k,nmax,ab
+:Try
+:  Request "g(x) function:",gx,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Input the initial value: ",p0,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Epsilon: ",ep,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:Try
+:  Request "Max number of iterations before forced exit: ",nmax,0,ab
+:Else
+:  Goto end
+:EndTry
+:If ab=0 Then
+:  Goto end
+:EndIf
+:p1:=gx|x=p0
+:p2:=gx|x=p1
+:pg1:=p0-(((p1-p0)^(2))/(p2-2*p1+p0))
+:err:=1000
+:k:=0
+:Disp "k     p0     p1     p2     pg     err"
+:While k<nmax
+:  Disp k,"   ",format(p0,"F9"),"   ",format(p1,"F9"),"   ",format(p2,"F9"),"   ",format(pg1,"F9"),"   ",format(err,"F9")
+:  Disp "____________________________________"
+:  pg:=pg1
+:  p0:=pg
+:  p1:=gx|x=p0
+:  p2:=gx|x=p1
+:  pg1:=p0-(((p1-p0)^(2))/(p2-2*p1+p0))
+:  err:=abs(pg1-pg)
+:  If err≤ep Then
+:      Disp "The method converges in ",k," iterations"
+:      Disp "The root it found was ",format(pg1,"F9")
+:      Return 
+:    Else
+:      k:=k+1
+:    EndIf
+:EndWhile
+:Lbl end
+:EndPrgm
