@@ -17,10 +17,10 @@ Prgm
 :If ab=0 Then
 :  Goto end
 :EndIf
-:mxy:=polyCoeffs(m,y)
-:nxy:=polyCoeffs(n,x)
-:mx:=mxy[1]
-:ny:=nxy[1]
+:mxy:=polyCoeffs(m,x)
+:nxy:=polyCoeffs(n,y)
+:mx:=((m)/(mxy[1]*nxy[1]))
+:ny:=((n)/(mxy[1]*nxy[1]))
 :Disp "Factored M(x,y): ",mx
 :Disp "Factored N(x,y): ",ny
 :sol:=∫(mx,x)+∫(ny,y)
