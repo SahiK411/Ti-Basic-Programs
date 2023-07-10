@@ -1,6 +1,6 @@
 Define edh_util()=
 Prgm
-:Local m,n,mt,nt,degmt,degnt,yu,dyu,sde,ab
+:Local m,n,mt,nt,degmt,degnt,yu,dyu,inp,sde,ab
 :Try
 :  Request "What is the M(x,y) function?",m,0,ab
 :Else
@@ -24,12 +24,29 @@ Prgm
 :degmt:=polyDegree(mt,t)
 :degnt:=polyDegree(nt,t)
 :If degmt=degnt Then
-:  yu:=u*x
-:  dyu:=u*dx+x*du
-:  sde:=(m|y=yu)*dx+(n|y=yu)*dyu
-:  Disp "f(x,u):",expand(sde)
-:  Disp "u = ",yu
-:  Disp "du = ",dyu
+:  Try
+:    Request "Replace ""x"" or ""y""? 1− X  2− Y",inp,0,ab
+:  Else
+:    Goto end
+:  EndTry
+:  If ab=0 Then
+:    Goto end
+:  EndIf
+:  If inp=1 Then
+:    yu:=v*y
+:    dyu:=v*dy+y*du
+:    sde:=(m|x=yu)*dyu+(n|x=yu)*dy
+:    Disp "f(v,x):",expand(sde)
+:    Disp "x = ",yu
+:    Disp "dx = ",dyu
+:  ElseIf inp=2 Then
+:    yu:=u*x
+:    dyu:=u*dx+x*du
+:    sde:=(m|y=yu)*dx+(n|y=yu)*dyu
+:    Disp "f(x,u):",expand(sde)
+:    Disp "y = ",yu
+:    Disp "dy = ",dyu
+:  EndIf
 : Goto end
 :EndIf
 :Disp "Degree of M(xt,yt): ",degmt
