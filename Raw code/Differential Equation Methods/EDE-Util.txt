@@ -1,6 +1,6 @@
 Define ede_util()=
 Prgm
-:Local m,n,dm,dn,ab
+:Local m,n,dm,dn,dmst,dnst,ab
 :Try
 :  Request "What is the M(x,y) function?",m,0,ab
 :Else
@@ -19,9 +19,11 @@ Prgm
 :EndIf
 :dm:=(m,y)
 :dn:=(n,x)
+:dmst:=string(dm)
+:dnst:=string(dn)
 :Disp "d/dy M(x,y): ",dm
 :Disp "d/dx N(x,y): ",dn
-:If dm=dn Then
+:If dmst=dnst Then
 :  Disp "f(x,y): ",∫(m,x)," + g(y)"
 :  Disp "f(x,y): ",∫(n,y)," + h(x)"
 :  Goto end
